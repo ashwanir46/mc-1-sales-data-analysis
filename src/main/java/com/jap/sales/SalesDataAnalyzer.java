@@ -35,7 +35,7 @@ public class SalesDataAnalyzer {
        }
 
        return salesRecordList;
-    }
+   }
     public List<SalesRecord> getAllCustomersSortedByPurchaseAmount(List<SalesRecord> salesData) {
         salesData.sort(((o1, o2) -> (int) (o2.getAmount() -o1.getAmount())));
         return salesData;
@@ -45,7 +45,20 @@ public class SalesDataAnalyzer {
        return salesData.get(0);
     }
 
-
-
+    public static void main(String[] args) {
+        SalesDataAnalyzer salesDataAnalyzer = new SalesDataAnalyzer();
+        List<SalesRecord> salesRecordList = salesDataAnalyzer.readFile("src/main/resources/purchase_details.csv");
+        for (SalesRecord salesRecord : salesRecordList) {
+            System.out.println(salesRecord);
+        }
+        System.out.println("\n ++++++++++++++++++++++++++++++++++++++++ \n");
+        List<SalesRecord> salesRecordList1 = salesDataAnalyzer.getAllCustomersSortedByPurchaseAmount(salesRecordList);
+        for (SalesRecord salesRecord : salesRecordList1) {
+            System.out.println(salesRecord);
+        }
+        System.out.println("\n ++++++++++++++++++++++++++++++++++++++++ \n");
+        SalesRecord salesRecordList2 = salesDataAnalyzer.getTopCustomerWhoSpentMaxTimeOnSite(salesRecordList1);
+        System.out.println(salesRecordList2);
+    }
 
 }
