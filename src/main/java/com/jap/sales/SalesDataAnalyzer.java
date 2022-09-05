@@ -36,13 +36,13 @@ public class SalesDataAnalyzer {
 
        return salesRecordList;
     }
-    public List<SalesRecord> getAllCustomersSortedByPurchaseAmount(List<SalesRecord> salesData)
-    {
+    public List<SalesRecord> getAllCustomersSortedByPurchaseAmount(List<SalesRecord> salesData) {
         salesData.sort(((o1, o2) -> (int) (o2.getAmount() -o1.getAmount())));
         return salesData;
     }
     public SalesRecord getTopCustomerWhoSpentMaxTimeOnSite(List<SalesRecord> salesData){
-       return null;
+       salesData.sort((o1, o2) -> (int) (o2.getTime_on_site() - o1.getTime_on_site()));
+       return salesData.get(0);
     }
 
 
